@@ -5,7 +5,7 @@
 #include <QSettings>
 #include <QDateTime>
 #include <QMessageBox>
-
+#include <QMainWindow>
 #ifdef __unix
 #include <unistd.h>
 #include <sys/types.h>
@@ -41,11 +41,12 @@ void VSLapp::logApplicationLaunch(QFileInfo appFile)
     qApp->applicationDirPath();
 
     // obtain the string we will log to the file
-    QString message = QString("%1\\n")
-            .arg(QDateTime::currentDateTime().toString("yyyyMMddhhmmss"));
+    QString message =
+	QDateTime::currentDateTime().toString("yyyyMMddhhmmss");
 #ifdef __unix
     message.append(getuid());
 #endif
+    message.append("\\n");
 
     QString nameOfLogFile = QString("%1%2").arg(appFile.absoluteFilePath()).arg(".log");
 
@@ -103,5 +104,27 @@ void VSLapp::showAboutDialog(QWidget *parent)
     msgBox.setDefaultButton(QMessageBox::Ok);
     msgBox.exec();
 }
+
+#define MainWindowGeometry "MainWindow/geometry"
+#define MainWindowDoRestore "MainWindow/restore"
+#define UI_VERSION 1
+void VSLapp::mainWindowSetup(QMainWindow *mw)
+{
+    mw->setWindowTitle(qApp->applicationName());
+
+    // set the geometry
+    QSettings settings;
+    if (settings.allKeys().contains(MainWindowGeometry)) {
+        mw->setGeometry(settings.value(MainWindowGeometry).toRect());
+    }
+}
+
+void VSLapp::mainWindowSave(QMainWindow *mw)
+{
+    // stash things that we will want on startup.
+    QSettings settings;
+    settings.setValue(MainWindowGeometry, mw->geometry());
+}
+
 
 

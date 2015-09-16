@@ -137,7 +137,7 @@ void RecentFiles::setMostRecentFile(const QString fileName)
 
     updateRecentFiles(settings);
 
-    qApp->setProperty("app/currentDirectory",
+    qApp->setProperty("currentDirectory",
                       QVariant(
                           QFileInfo(fileName)
                           .absoluteDir()
@@ -202,3 +202,4 @@ void RecentFiles::updateRecentFiles(QSettings &settings)
 
     getRecentFiles();
 }
+

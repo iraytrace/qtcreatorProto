@@ -5,6 +5,7 @@
 #include <QSettings>
 #include <QFileDialog>
 
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow),
@@ -13,7 +14,8 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     m_recentMenu.attachToMenuAfterItem(ui->menuFile, "Open...", SLOT(loadFile(QString)));
-    setWindowTitle(qApp->applicationName());
+    VSLapp::mainWindowSetup(this);
+
 }
 
 MainWindow::~MainWindow()
@@ -23,10 +25,10 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_actionFileOpen_triggered()
 {
-    QSettings setttings;
+    QSettings settings;
 
     QString fileName = QFileDialog::getOpenFileName(this, "Select File",
-                                                    setttings.value("currentDirectory").toString(),
+                                                    settings.value("currentDirectory").toString(),
                                                     "All Files (*.*)");
 
     if (fileName.isEmpty())
@@ -56,7 +58,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
     if (shouldAbortClose()) {
         event->ignore();
     } else {
-        /* writeSettings(); */
+        VSLapp::mainWindowSave(this);
         event->accept();
     }
 }
@@ -77,5 +79,6 @@ bool MainWindow::shouldAbortClose()
 
     return false;
 }
+
 
 
