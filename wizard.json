@@ -12,7 +12,7 @@
     "options":
     [
         { "key": "ProFileName", "value": "%{JS: Util.fileName('%{ProjectDirectory}/%{ProjectName}', 'pro')}" },
-	{ "key": "MainCppFileName", "value": "%{JS: 'main.' + Util.preferredSuffix('text/x-c++src')}" },
+		{ "key": "MainCppFileName", "value": "%{JS: 'main.' + Util.preferredSuffix('text/x-c++src')}" },
         { "key": "IsTopLevelProject", "value": "%{JS: !'%{Exists:ProjectExplorer.Profile.Ids}'}" }
     ],
 
@@ -52,13 +52,27 @@
                     "source": "main.cpp",
                     "target": "%{MainCppFileName}"
                 },
-		{   "source": "MainWindow.cpp" },
-		{   "source": "MainWindow.h"   },
-		{   "source": "MainWindow.ui"  },
-		{   "source": "RecentFiles.cpp"  },
-		{   "source": "RecentFiles.h"  },
-		{   "source": "VSLapp.cpp"  },
-		{   "source": "VSLapp.h"  },
+				{   "source": "MainWindow.cpp" },
+				{   "source": "MainWindow.h"   },
+				{   "source": "MainWindow.ui"  },
+				{   "source": "RecentFiles.cpp"  },
+				{   "source": "RecentFiles.h"  },
+				{   "source": "VSLapp.cpp"  },
+				{   "source": "VSLapp.h"  },
+				{   "source": "misc/CMake/compiler/clang.cmake", "target": "%{ProjectDirectory}/misc/CMake/compiler/clang.cmake"  },
+				{   "source": "misc/CMake/compiler/compiler_setup.cmake", "target": "%{ProjectDirectory}/misc/CMake/compiler/compiler_setup.cmake" },
+				{   "source": "misc/CMake/compiler/gcc.cmake", "target": "%{ProjectDirectory}/misc/CMake/compiler/gcc.cmake" },
+				{   "source": "misc/CMake/compiler/icc.cmake", "target": "%{ProjectDirectory}/misc/CMake/compiler/icc.cmake" },
+				{   "source": "misc/CMake/compiler/msvc.cmake", "target": "%{ProjectDirectory}/misc/CMake/compiler/msvc.cmake" },
+				{   "source": "misc/CMake/findAndInstallDependencies.cmake", "target": "%{ProjectDirectory}/misc/CMake/findAndInstallDependencies.cmake" },
+				{   "source": "misc/CMake/FindBRLCAD.cmake", "target": "%{ProjectDirectory}/misc/CMake/FindBRLCAD.cmake" },
+				{   "source": "misc/CMake/qtPrefix.cmake", "target": "%{ProjectDirectory}/misc/CMake/qtPrefix.cmake" },
+				{   "source": "misc/CMake/rpath.cmake", "target": "%{ProjectDirectory}/misc/CMake/rpath.cmake" },
+				{   "source": "misc/CMake/runBundleUtil.cmake", "target": "%{ProjectDirectory}/misc/CMake/runBundleUtil.cmake" },
+				{   "source": "misc/CMake/setBuildMachineUser.cmake", "target": "%{ProjectDirectory}/misc/CMake/setBuildMachineUser.cmake" },
+				{   "source": "misc/CMake/setupCpack.cmake", "target": "%{ProjectDirectory}/misc/CMake/setupCpack.cmake" },
+				{   "source": "misc/license.txt", "target":  "%{ProjectDirectory}/misc/license.txt"},
+				{   "source": "CMakeLists.txt", "target":  "%{ProjectDirectory}/CMakeLists.txt"},
                 {
                     "source": "../../git.ignore",
                     "target": "%{ProjectDirectory}/.gitignore",
