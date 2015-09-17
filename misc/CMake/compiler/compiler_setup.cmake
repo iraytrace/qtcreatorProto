@@ -4,13 +4,13 @@
 # This approach to managing compiler settings was adopted from interactions
 # between Jeff Amstutz and Intel Corporation.
 
-if(${CMAKE_CXX_COMPILER_ID} STREQUAL "GNU")
+if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
   include(gcc)
-elseif(${CMAKE_CXX_COMPILER_ID} STREQUAL "Intel")
+elseif("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Intel")
   include(icc)
-elseif(${CMAKE_CXX_COMPILER_ID} STREQUAL "Clang")
+elseif("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
   include(clang)
-elseif(${CMAKE_CXX_COMPILER_ID} STREQUAL "MSVC")
+elseif("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
 message(STATUS ">${CMAKE_CXX_COMPILER_ID}<")
   include(msvc)
   if(NOT DEFINED QTVERSION_DIR)
