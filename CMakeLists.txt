@@ -27,7 +27,7 @@ find_package(OpenGL REQUIRED)
 
 # Get the Qt stuff set up.
 # if cmake cannot find Qt you can set Qt5_DIR or uncomment next line
-set(Qt5_DIR "C:/Qt/5.5/msvc2013_64/lib/cmake/Qt5")
+#set(Qt5_DIR "C:/Qt/5.5/msvc2013_64/lib/cmake/Qt5")
 find_package(Qt5 COMPONENTS Core Gui Widgets OpenGL REQUIRED)
 
 # make all sources part of the build
@@ -53,23 +53,23 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
 if (WIN32)
-    add_executable(cool WIN32 ${product_SRCS} ${UIS} )
+    add_executable(%{ProjectName} WIN32 ${product_SRCS} ${UIS} )
 else (WIN32)
-    add_executable(cool       ${product_SRCS} ${UIS} )
+    add_executable(%{ProjectName}       ${product_SRCS} ${UIS} )
 endif (WIN32)
 
-target_link_LIBRARIES(cool
+target_link_LIBRARIES(%{ProjectName}
     Qt5::Core
     Qt5::Gui
     Qt5::Widgets
     Qt5::OpenGL
   )
 
-set_target_properties(cool
+set_target_properties(%{ProjectName}
     PROPERTIES
     ENABLE_EXPORTS ON
     COMPILE_FLAGS "${Qt5Widgets_EXECUTABLE_COMPILE_FLAGS}")
 
-install(TARGETS cool RUNTIME DESTINATION ${RUNTIME_DIR})
-find_and_install_dependencies(cool)
+install(TARGETS %{ProjectName} RUNTIME DESTINATION ${RUNTIME_DIR})
+find_and_install_dependencies(%{ProjectName})
 
