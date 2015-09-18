@@ -7,6 +7,7 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH}
   "${CMAKE_SOURCE_DIR}/misc/CMake/compiler"
 )
 
+include(findAndInstallDependencies)
 include(setBuildMachineUser) #create definitions for whence the executable was built
 include(compiler_setup)
 include(InstallRequiredSystemLibraries)
@@ -68,6 +69,7 @@ install(TARGETS %{ProjectName}
     BUNDLE DESTINATION . COMPONENT Runtime
     RUNTIME DESTINATION bin COMPONENT Runtime )
 
+find_and_install_dependencies(%{ProjectName})
 # The following is from http://www.vtk.org/Wiki/CMake/CPack/BundleUtilities/Examples/Linux/Automatic
 SET(APPS "\\${CMAKE_INSTALL_PREFIX}/bin/%{ProjectName}${CMAKE_EXECUTABLE_SUFFIX}")
 set(YOUR_PLUGINS "") #empty for now

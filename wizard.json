@@ -64,6 +64,8 @@
 				{   "source": "misc/CMake/compiler/gcc.cmake", "target": "%{ProjectDirectory}/misc/CMake/compiler/gcc.cmake" },
 				{   "source": "misc/CMake/compiler/icc.cmake", "target": "%{ProjectDirectory}/misc/CMake/compiler/icc.cmake" },
 				{   "source": "misc/CMake/compiler/msvc.cmake", "target": "%{ProjectDirectory}/misc/CMake/compiler/msvc.cmake" },
+				{   "source": "misc/CMake/findAndInstallDependencies.cmake", "target": "%{ProjectDirectory}/misc/CMake/findAndInstallDependencies.cmake" },
+				{   "source": "misc/CMake/runBundleUtil.cmake", "target": "%{ProjectDirectory}/misc/CMake/runBundleUtil.cmake" },
 				{   "source": "misc/CMake/rpath.cmake", "target": "%{ProjectDirectory}/misc/CMake/rpath.cmake" },
 				{   "source": "misc/CMake/setBuildMachineUser.cmake", "target": "%{ProjectDirectory}/misc/CMake/setBuildMachineUser.cmake" },
 				{   "source": "misc/CMake/setupCpack.cmake", "target": "%{ProjectDirectory}/misc/CMake/setupCpack.cmake" },
