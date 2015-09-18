@@ -5,24 +5,17 @@ cmake_minimum_required(VERSION 3.2)
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH}
   "${CMAKE_SOURCE_DIR}/misc/CMake"
   "${CMAKE_SOURCE_DIR}/misc/CMake/compiler"
-  "${CMAKE_SOURCE_DIR}/misc/nsis"
 )
 
-include(setBuildMachineUser) #create definitions for whence the executable is built
-#include(compiler_setup)
-include(findAndInstallDependencies)
+include(setBuildMachineUser) #create definitions for whence the executable was built
+include(compiler_setup)
 include(InstallRequiredSystemLibraries)
-include(setupCpack)
-setupCpack(%{ProjectName} 1 0 "${CMAKE_SOURCE_DIR}/misc/license.txt")
 
 # target build locations
 set(RUNTIME_DIR bin)
 set(PLUGIN_DIR ${RUNTIME_DIR}/plugins)
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR}/bin)
 set(LIBRARY_OUTPUT_PATH    ${CMAKE_BINARY_DIR}/lib)
-
-
-find_package(OpenGL REQUIRED)
 
 
 # Get the Qt stuff set up.
@@ -46,11 +39,11 @@ include_directories(
     ${Qt5OpenGL_INCLUDE_DIRS}
     )
 
-qt5_wrap_ui(UIS ${product_UIS})
-
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
+set(CMAKE_AUTOUIC ON)
+#qt5_wrap_ui(UIS ${product_UIS}
 
 if (WIN32)
     add_executable(%{ProjectName} WIN32 ${product_SRCS} ${UIS} )
@@ -64,12 +57,32 @@ target_link_LIBRARIES(%{ProjectName}
     Qt5::Widgets
     Qt5::OpenGL
   )
-
 set_target_properties(%{ProjectName}
     PROPERTIES
-    ENABLE_EXPORTS ON
-    COMPILE_FLAGS "${Qt5Widgets_EXECUTABLE_COMPILE_FLAGS}")
+    ENABLE_EXPORTS ON)
+# if cmake version is before 2.8.12 you need to add 
+# COMPILE_FLAGS "${Qt5Widgets_EXECUTABLE_COMPILE_FLAGS}"
 
-install(TARGETS %{ProjectName} RUNTIME DESTINATION ${RUNTIME_DIR})
-find_and_install_dependencies(%{ProjectName})
+	
+install(TARGETS %{ProjectName}
+    BUNDLE DESTINATION . COMPONENT Runtime
+    RUNTIME DESTINATION bin COMPONENT Runtime )
 
+# The following is from http://www.vtk.org/Wiki/CMake/CPack/BundleUtilities/Examples/Linux/Automatic
+SET(APPS "\\${CMAKE_INSTALL_PREFIX}/bin/%{ProjectName}${CMAKE_EXECUTABLE_SUFFIX}")
+set(YOUR_PLUGINS "") #empty for now
+set(YOUR_LIBRARY_DIRS   
+  "${CMAKE_INSTALL_PREFIX}/bin"
+  "${CMAKE_INSTALL_PREFIX}/lib"
+  "${CMAKE_BINARY_DIR}/bin"
+  "${CMAKE_BINARY_DIR}/lib"
+  "${Qt5_DIR}/../../"
+  "${Qt5_DIR}/../../bin"
+  "${Qt5_DIR}/../../../bin"
+  "${Qt5_DIR}/../../../lib")
+install(CODE "
+  include(BundleUtilities)
+  fixup_bundle(\\"${APPS}\\" \\"\\${YOUR_PLUGINS}\\" \\"${YOUR_LIBRARY_DIRS}\\")
+  " COMPONENT Runtime)
+
+ include(setupCpack)

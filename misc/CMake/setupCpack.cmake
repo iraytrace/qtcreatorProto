@@ -1,14 +1,14 @@
-macro(setupCpack PKG_NAME PKG_MAJOR PKG_MINOR PKG_LICENSE)
-
+if (WIN32)
 set(CPACK_GENERATOR ZIP)
-set(CPACK_PACKAGE_NAME ${PKG_NAME})
-set(CPACK_PACKAGE_VERSION ${PKG_VERSION})
+endif (WIN32)
 
-# build a CPack driven installer package
-include (InstallRequiredSystemLibraries)
-set (CPACK_RESOURCE_FILE_LICENSE "${PKG_LICENSE}")
-set (CPACK_PACKAGE_VERSION_MAJOR "${PKG_MAJOR}")
-set (CPACK_PACKAGE_VERSION_MINOR "${PKG_MINOR}")
+set(CPACK_PACKAGE_NAME %{ProjectName})
+
+if (EXISTS "${CMAKE_SOURCE_DIR}/misc/license.txt")
+set (CPACK_RESOURCE_FILE_LICENSE "${CMAKE_SOURCE_DIR}/misc/license.txt")
+endif ()
+
+set (CPACK_PACKAGE_VERSION_MAJOR 1)
+set (CPACK_PACKAGE_VERSION_MINOR 0)
+set (CPACK_PACKAGE_VERSION_PATCH 0)
 include (CPack)
-
-endmacro(setupCpack)

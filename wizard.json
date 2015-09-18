@@ -1,10 +1,10 @@
 {
     "version": 1,
     "kind": "project",
-    "id": "U.QtLee",
-    "category": "H.Project",
-    "trDescription": "Creates a qmake-based project that Lee likes.",
-    "trDisplayName": "Lee qmake Project",
+    "id": "U.Qt",
+    "category": "F.Application",
+    "trDescription": "Creates a CMake-based project that Lee likes.",
+    "trDisplayName": "Lee CMake Project",
     "trDisplayCategory": "Application",
     "icon": "../../../global/guiapplication.png",
     "featuresRequired": [ "QtSupport.Wizards.FeatureQt" ],
@@ -44,8 +44,8 @@
             "data":
             [
                 {
-                    "source": "file.pro",
-                    "target": "%{ProFileName}",
+                    "source": "CMakeLists.txt",
+                    "target": "%{ProjectDirectory}/CMakeLists.txt",
                     "openAsProject": true
                 },
 		{
@@ -64,15 +64,10 @@
 				{   "source": "misc/CMake/compiler/gcc.cmake", "target": "%{ProjectDirectory}/misc/CMake/compiler/gcc.cmake" },
 				{   "source": "misc/CMake/compiler/icc.cmake", "target": "%{ProjectDirectory}/misc/CMake/compiler/icc.cmake" },
 				{   "source": "misc/CMake/compiler/msvc.cmake", "target": "%{ProjectDirectory}/misc/CMake/compiler/msvc.cmake" },
-				{   "source": "misc/CMake/findAndInstallDependencies.cmake", "target": "%{ProjectDirectory}/misc/CMake/findAndInstallDependencies.cmake" },
-				{   "source": "misc/CMake/FindBRLCAD.cmake", "target": "%{ProjectDirectory}/misc/CMake/FindBRLCAD.cmake" },
-				{   "source": "misc/CMake/qtPrefix.cmake", "target": "%{ProjectDirectory}/misc/CMake/qtPrefix.cmake" },
 				{   "source": "misc/CMake/rpath.cmake", "target": "%{ProjectDirectory}/misc/CMake/rpath.cmake" },
-				{   "source": "misc/CMake/runBundleUtil.cmake", "target": "%{ProjectDirectory}/misc/CMake/runBundleUtil.cmake" },
 				{   "source": "misc/CMake/setBuildMachineUser.cmake", "target": "%{ProjectDirectory}/misc/CMake/setBuildMachineUser.cmake" },
 				{   "source": "misc/CMake/setupCpack.cmake", "target": "%{ProjectDirectory}/misc/CMake/setupCpack.cmake" },
 				{   "source": "misc/license.txt", "target":  "%{ProjectDirectory}/misc/license.txt"},
-				{   "source": "CMakeLists.txt", "target":  "%{ProjectDirectory}/CMakeLists.txt"},
                 {
                     "source": "../../git.ignore",
                     "target": "%{ProjectDirectory}/.gitignore",
