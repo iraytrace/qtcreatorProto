@@ -1,30 +1,26 @@
-This project is a project template for QtCreator.  
+-------------  OVERVIEW ------------- 
+This repository is a project template for QtCreator.  
+
 The project created is a much more complete application than the default
-projects provided by the Qt maintainers.  In particular:
+Widgets projects provided by the Qt maintainers.  Much infrastructure for
+opening files, recent file history and About dialogs is already in place.
+There are menus for:
 
-There is also a Help menu with an About dialog for the application
-There is a File menu with the following menu entries
+File			Help
+  Open...		  About
+  Open Recent...
+  Save
+  SaveAs
+  Quit
 
-	Open...  calls loadFile(QFileDialog::getOpenFileName) 
-		 Remebers the folder where the last file was opened
-	Open Recent ...
-		 Can open files that were previously opened 
-	File->Save
-	File->SaveAs
-	File->Quit	closes the MainWindow
-
-Application window geometry is saved/restored
-
+The Application window geometry is saved/restored
 The project uses CMake (not qmake) for the build system.
 
+-------------  INSTALLATION ------------- 
 To be able to use the project template you must install it into QtCreator
-and then re-start QtCreator.
-
-
-To install check out the repository into the templates/wizards/projects/qmake
-folder of qtcreator.  On Windows:
+and then re-start QtCreator.  To install check out the repository into the
+templates/wizards/projects/qmake folder of qtcreator.  On Windows:
 C:\Qt\Tools\QtCreator\share\qtcreator\templates\wizards\projects\qmake
-
 
 According to http://doc.qt.io/qtcreator/creator-project-wizards.html
 you should be able to put it in "the local user's configuration folder, 
