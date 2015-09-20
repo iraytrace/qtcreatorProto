@@ -3,13 +3,15 @@ The project created is a much more complete application than the default
 projects provided by the Qt maintainers.  In particular:
 
 There is also a Help menu with an About dialog for the application
-There is a File menu
-	File->Open calls QFileDialog::getOpenFileName
-	A "Recent Files" sub-menu 
+There is a File menu with the following menu entries
+
+	Open...  calls loadFile(QFileDialog::getOpenFileName) 
+		 Remebers the folder where the last file was opened
+	Open Recent ...
+		 Can open files that were previously opened 
 	File->Save
 	File->SaveAs
-	File->Quit
-
+	File->Quit	closes the MainWindow
 
 Application window geometry is saved/restored
 

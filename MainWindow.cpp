@@ -26,15 +26,9 @@ MainWindow::~MainWindow()
 void MainWindow::on_actionFileOpen_triggered()
 {
     QSettings settings;
-
-    QString fileName = QFileDialog::getOpenFileName(this, "Select File",
-                                                    settings.value("currentDirectory").toString(),
-                                                    "All Files (*.*)");
-
-    if (fileName.isEmpty())
-        return;
-
-    loadFile(fileName);
+    loadFile(QFileDialog::getOpenFileName(this, "Select File",
+                                          settings.value("currentDirectory").toString(),
+                                          "All Files (*.*)"));
 }
 
 void MainWindow::on_actionFileSave_triggered()
@@ -62,12 +56,19 @@ void MainWindow::closeEvent(QCloseEvent *event)
         event->accept();
     }
 }
-
+#include <QMessageBox>
 void MainWindow::loadFile(QString filename)
 {
+    if (filename.isEmpty())
+        return;
+
     QSettings settings;
     QFileInfo fi(filename);
 
+    if (!fi.exists()) {
+        QMessageBox::warning(this, "File Open Error", QString("File '%1' does not exist").arg(filename));
+        return;
+    }
     settings.setValue("currentDirectory", fi.absolutePath());
     m_recentMenu.setMostRecentFile(filename);
 }
@@ -79,6 +80,7 @@ bool MainWindow::shouldAbortClose()
 
     return false;
 }
+
 
 
 
