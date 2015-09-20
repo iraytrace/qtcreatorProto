@@ -16,3 +16,19 @@ There is a File menu with the following menu entries
 Application window geometry is saved/restored
 
 The project uses CMake (not qmake) for the build system.
+
+To be able to use the project template you must install it into QtCreator
+and then re-start QtCreator.
+
+
+To install check out the repository into the templates/wizards/projects/qmake
+folder of qtcreator.  On Windows:
+C:\Qt\Tools\QtCreator\share\qtcreator\templates\wizards\projects\qmake
+
+
+According to http://doc.qt.io/qtcreator/creator-project-wizards.html
+you should be able to put it in "the local user's configuration folder, 
+    $HOME/.config/QtProject/qtcreator/templates/wizards on Linux and OS X or 
+    %APPDATA%\QtProject\qtcreator\templates\wizards on windows"
+
+I have not had success with this.  Let me know if it works for you
