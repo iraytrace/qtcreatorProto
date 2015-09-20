@@ -15,4 +15,4 @@ There is a File menu with the following menu entries
 
 Application window geometry is saved/restored
 
-In addition, the project uses CMake instead of qmake for the build system.
+The project uses CMake (not qmake) for the build system.
