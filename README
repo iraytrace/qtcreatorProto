@@ -1,0 +1,16 @@
+This project is a project template for QtCreator.  
+The project created is a much more complete application than the default
+projects provided by the Qt maintainers.  In particular:
+
+There is also a Help menu with an About dialog for the application
+There is a File menu
+	File->Open calls QFileDialog::getOpenFileName
+	A "Recent Files" sub-menu 
+	File->Save
+	File->SaveAs
+	File->Quit
+
+
+Application window geometry is saved/restored
+
+In addition, the project uses CMake instead of qmake for the build system.
