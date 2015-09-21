@@ -18,6 +18,9 @@ set(PLUGIN_DIR ${RUNTIME_DIR}/plugins)
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR}/bin)
 set(LIBRARY_OUTPUT_PATH    ${CMAKE_BINARY_DIR}/lib)
 
+#set(OSG_DIR "C:/osgearth")
+#find_package(OpenSceneGraph 3.0.1 COMPONENTS osg osgDB osgViewer osgGA osgUtil OpenThreads)
+#include_directories(${OPENSCENEGRAPH_INCLUDE_DIRS})
 
 # Get the Qt stuff set up.
 # if cmake cannot find Qt you can set Qt5_DIR or uncomment next line
@@ -43,8 +46,9 @@ include_directories(
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
-set(CMAKE_AUTOUIC ON)
-#qt5_wrap_ui(UIS ${product_UIS}
+#set(CMAKE_AUTOUIC ON)
+# this makes sure UI files are shown in the IDE
+qt5_wrap_ui(UIS ${product_UIS})
 
 if (WIN32)
     add_executable(%{ProjectName} WIN32 ${product_SRCS} ${UIS} )
@@ -57,6 +61,7 @@ target_link_LIBRARIES(%{ProjectName}
     Qt5::Gui
     Qt5::Widgets
     Qt5::OpenGL
+#   ${OPENSCENEGRAPH_LIBRARIES}
   )
 set_target_properties(%{ProjectName}
     PROPERTIES
