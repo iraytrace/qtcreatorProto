@@ -4,7 +4,7 @@
 #include <QCloseEvent>
 #include <QSettings>
 #include <QFileDialog>
-
+#include <QMessageBox>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -56,7 +56,6 @@ void MainWindow::closeEvent(QCloseEvent *event)
         event->accept();
     }
 }
-#include <QMessageBox>
 void MainWindow::loadFile(QString filename)
 {
     if (filename.isEmpty())
@@ -76,11 +75,7 @@ void MainWindow::loadFile(QString filename)
 bool MainWindow::shouldAbortClose()
 {
     // Ask all open documents to save/close
-    // if any object then return "true"
+    // If application should not close then return "true"
 
     return false;
 }
-
-
-
-
