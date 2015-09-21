@@ -18,7 +18,7 @@ The project uses CMake (not qmake) for the build system.
 
 -------------  INSTALLATION ------------- 
 To be able to use the project template you must install it into QtCreator
-and then re-start QtCreator.  To install check out the repository into the
+and then re-start QtCreator.  To install, clone the repository into the
 templates/wizards/projects/qmake folder of qtcreator.  On Windows:
 C:\Qt\Tools\QtCreator\share\qtcreator\templates\wizards\projects\qmake
 
