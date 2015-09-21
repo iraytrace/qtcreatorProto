@@ -107,6 +107,8 @@ class QMessageBoxResize: public QMessageBox
         if (QWidget *textEdit = findChild<QTextEdit *>()) {
           textEdit->setMaximumHeight(QWIDGETSIZE_MAX);
         }
+      default:
+	break;
       }
       return res;
     }
